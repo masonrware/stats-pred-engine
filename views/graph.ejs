@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GitRat</title>
+    <link rel="shortcut icon" type="image/jpg" href="/img/favicon.ico"/>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+
+  <body style="background-color:#2b2d30;">
+    
+    <!--  -->
+    <!--  GRAPH PAGE  -->
+    <!--  -->
+
+    <!-- search bar -->
+    <form id="selectForm" style="padding: 10px">
+      Types:
+      <select id="nodeFilterSelect">
+        <option value="">All</option>
+      </select>
+      Text: <input id="txtFilter" type="text" />
+
+    </form>
+    
+    <!-- modal -->
+    <button id="myBtn">Open Modal</button>
+    <br />
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+    </div>
+    
+    <!-- left panel -->
+    <div class="profile_leftPanel">
+      <div id="graph" style="background-color:#91a2bd;"></div>
+    </div>
+
+    <!-- right panel -->
+    <div class="profile_rightPanel_center">
+      <pre id="details"></pre>
+    </div>
+
+
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/genGraph.js"></script>
+  </body>
+</html>

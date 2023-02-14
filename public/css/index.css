@@ -1,0 +1,249 @@
+#graph {
+  width: 100%;
+  height: 680px;
+  border: 3px solid black;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+#details {
+  height: 100%;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
+.tab {
+  /* outline: 2px dashed red; */
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #666;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+}
+
+.spacer
+{
+    width: 100%;
+    height: 2%;
+}
+
+/* #boilerplate {
+  display: block;
+} */
+
+.profile_leftPanel {
+  width: 70%;
+  float: left;
+  margin-right: 20px;
+}
+
+.profile_rightPanel_center {
+  /* height: 120px; */
+  margin-left: auto;
+  margin-right: auto;
+  /* text-align: center; */
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  padding: 5px;
+  margin: 5px;
+  background-color: #666;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  /* width: 100%; */
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.subcollapsible {
+  /* padding: 5px;
+	margin: 5px; */
+  background-color: red;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  /* width: 100%; */
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+body {
+  color: #f1f1f1;
+}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 10px;
+  display: none;
+  overflow: hidden;
+  background-color: green;
+}
+
+details {
+  background-color: palevioletred;
+  border: 1px solid black;
+  user-select: none;
+}
+
+span.icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s;
+  /* margin-left: auto; */
+}
+
+details[open] summary span.icon {
+  transform: rotate(180deg);
+}
+
+.button4 {border-radius: 12px;}
+
+input {
+	font: 1em Hind, sans-serif;
+	line-height: 1.5em;
+	color: #171717;
+	transition: all 0.25s ease-out;
+	background: transparent;
+	border-radius: 1.5em;
+	box-shadow: 0 0 0 0.4em #171717 inset;
+	padding: 0.75em;
+	transform: translate(0.5em,0.5em) scale(0.5);
+	transform-origin: 100% 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+input:invalid:not(:focus) {
+	cursor: pointer;
+}
+
+input:focus {
+	outline: transparent;
+}
+
+input::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+input:focus,
+input:valid {
+	background: #fff;
+	border-radius: 0.375em 0 0 0.375em;
+	box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+	transform: scale(1);
+}
+.search-btn {
+	background: #171717;
+	border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+	padding: 0.75em;
+	position: relative;
+	/* transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125); */
+	transform-origin: 0 50%;
+}
+.search-btn:before, 
+.search-btn:after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+}
+.search-btn:before {
+	border-radius: 50%;
+	box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+	top: 0.75em;
+	left: 0.75em;
+	width: 1.2em;
+	height: 1.2em;
+}
+.search-btn:after {
+	background: #f1f1f1;
+	border-radius: 0 0.25em 0.25em 0;
+	top: 51%;
+	left: 51%;
+	width: 0.75em;
+	height: 0.25em;
+	transform: translate(0.2em,0) rotate(45deg);
+	transform-origin: 0 50%;
+}
+.search-btn span {
+	display: inline-block;
+	/* overflow: hidden; */
+	width: 5px;
+	height: 1px;
+}

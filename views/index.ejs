@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GitRat</title>
+    <link rel="shortcut icon" type="image/jpg" href="/img/favicon.ico"/>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+
+  <body style="background-color: #2b2d30">
+    <a href="/" style="text-decoration: none;"><h1>GitRat🐀</h1></a>
+
+    <!-- nav bar -->
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'London')">
+        London
+      </button>
+      <button
+        class="tablinks"
+        onclick="openCity(event, 'Paris')"
+        id="defaultOpen"
+      >
+        Paris
+      </button>
+    </div>
+
+    <div class="spacer">&nbsp;</div>
+
+    <!-- boilerplate html to serve when someone arrives  -->
+    <div id="London" class="tabcontent">
+      <p>Hello</p>
+      <div id="boilerplate">Hi!</div>
+
+      <!-- modal -->
+      <button id="myBtn">Open Modal</button>
+      <br />
+
+      <div id="myModal" class="modal">
+        Modal content
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/js/genList.js"></script>
+
+    <!--  -->
+    <!--  LIST PAGE  -->
+    <!--  -->
+    <div id="Paris" class="tabcontent">
+      <form id="selectForm" style="padding: 10px">
+        <input autocomplete="off" type="text" id="txtFilter" />
+        <button class="search-btn" type="submit">
+          <strong style="color: lime; font-size: large">GO</strong>
+        </button>
+      </form>
+      <script>
+        // script for searching
+        // TODO open all selected modals
+        let selectForm = document.getElementById("selectForm");
+
+        selectForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          let value = document.getElementById("txtFilter").value;
+          // all will reload all contents
+          if (value == "all") {
+            let msg = document.getElementById("msg");
+            msg.innerHTML = "";
+            fetch(`/all`)
+              .then(async (res) => {
+                const data = await res.json();
+                let DATA_NODES = data[0];
+                let DATA_EDGES = data[1];
+                const repoList = document.getElementById("repoList");
+                let html = constructList(DATA_NODES, DATA_EDGES).join("");
+                repoList.innerHTML = html;
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            let msg = document.getElementById("msg");
+            msg.innerHTML = "";
+            let matches = 0;
+            // filter all into relevant search family of items (group, subgroup, project)
+            fetch(`/all`).then(async (res) => {
+              const data = await res.json();
+              let DATA_NODES = data[0];
+              let DATA_EDGES = data[1];
+              DATA_NODES.forEach((node) => {
+                if (
+                  node.name.toLowerCase() == value.toLowerCase() ||
+                  node.name.toLowerCase().split(" ").join("-") ==
+                    value.toLowerCase()
+                ) {
+                  matches += 1;
+                  value = node._data.path[1];
+                  fetch(`/tree/${value}`)
+                    .then(async (res) => {
+                      const data = await res.json();
+                      let DATA_NODES = data[0];
+                      let DATA_EDGES = data[1];
+
+                      let repoList = document.getElementById("repoList");
+                      let html = constructList(DATA_NODES, DATA_EDGES).join("");
+                      repoList.innerHTML = html;
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
+                }
+              });
+              if (matches == 0) {
+                let msg = document.getElementById("msg");
+                msg.innerHTML = `<b><p style="color:red">"<i>${value}</i>" yielded no matches :(</p></b>`;
+              }
+            });
+          }
+        });
+      </script>
+      <div id="msg"></div>
+      <div id="repoList"></div>
+    </div>
+
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script>
+      document.getElementById("defaultOpen").click();
+    </script>
+  </body>
+</html>
